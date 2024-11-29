@@ -1,0 +1,23 @@
+name: Schedule Puppeteer Script
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # اجرای هر یک دقیقه
+
+jobs:
+  run-puppeteer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # نسخه Node.js
+
+      - name: Install dependencies
+        run: npm install puppeteer
+
+      - name: Run Puppeteer script
+        run: node script.js
